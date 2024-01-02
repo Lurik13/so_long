@@ -6,7 +6,7 @@
 /*   By: lribette <lribette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 17:33:03 by lribette          #+#    #+#             */
-/*   Updated: 2024/01/01 17:52:49 by lribette         ###   ########.fr       */
+/*   Updated: 2024/01/02 19:34:54 by lribette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,11 @@ void	ft_error(char *str)
 
 int	main(int argc, char **argv)
 {
+	t_list	map;
+	
 	if (argc != 2)
 		ft_error("Vous devez inclure un fichier .ber");
-	(void)argv;
+	map_init(&map, argv[1]);
+	check_rectangular(argv[1]);
 	//error(argv[1]);
 }
