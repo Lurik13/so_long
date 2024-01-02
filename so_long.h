@@ -6,7 +6,7 @@
 /*   By: lribette <lribette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 17:44:17 by lribette          #+#    #+#             */
-/*   Updated: 2024/01/02 19:36:41 by lribette         ###   ########.fr       */
+/*   Updated: 2024/01/02 22:35:18 by lribette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct      s_elements
 int	ft_printf(const char *format, ...);
 char	*get_next_line(int fd);
 void	ft_error(char *str);
-void	check_rectangular(char *map);
+int	map_height(t_elements map, int fd);
+void	map_init(t_elements map, char *argv);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: lribette <lribette@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/29 18:24:32 by lribette          #+#    #+#              #
-#    Updated: 2024/01/02 15:13:33 by lribette         ###   ########.fr        #
+#    Updated: 2024/01/02 22:41:18 by lribette         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,7 @@ clean:
 	$(RM) $(OBJECTS)
 	make clean -C ./mlx_linux
 	make clean -C ./core/ft_printf
+	make clean -C ./core/get_next_line
 
 fclean: clean
 	$(RM) $(NAME) $(PRINTF)

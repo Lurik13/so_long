@@ -6,13 +6,13 @@
 /*   By: lribette <lribette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 17:32:52 by lribette          #+#    #+#             */
-/*   Updated: 2024/01/02 19:41:58 by lribette         ###   ########.fr       */
+/*   Updated: 2024/01/02 22:35:06 by lribette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-static int	ft_strlen(char *str)
+/*static int	ft_strlen(char *str)
 {
 	int	i;
 
@@ -20,9 +20,9 @@ static int	ft_strlen(char *str)
 	while (str[i])
 		i++;
 	return (i);
-}
+}*/
 
-void	sort_elements(char *str, t_list map)
+/*void	sort_elements(char *str, t_list map)
 {
 	int		len;
 	t_list	map;
@@ -40,10 +40,14 @@ void	sort_elements(char *str, t_list map)
 			map->nb_of_exits;
 		if (str[len] == 'P')
 			map->nb_of_starts;
+		if (str[len] == '\n')
+			continue ;
+		else
+			ft_error("Certains symboles ne figurent pas dans notre liste d'elements");
 	}
-}
+}*/
 
-void	check_rectangular(char *map)
+/*void	check_rectangular(char *map)
 {
 	char	*result;
 	int		fd;
@@ -67,9 +71,9 @@ void	check_rectangular(char *map)
 			ft_error("La map n'est pas rectangulaire");
 	}
 	free(result);
-}
+}*/
 
-int	map_heigth(t_list map, int fd)
+int	map_height(t_elements map, int fd)
 {
 	char	*result;
 
@@ -77,15 +81,15 @@ int	map_heigth(t_list map, int fd)
 	map->height = 1;
 	while (result)
 	{
-		result = get_next_line
+		result = get_next_line(fd);
 		map->height++;
 	}
+	return (map->height);
 }
 
-void	map_init(t_list map, char *argv)
+void	map_init(t_elements *map, char *argv)
 {
 	int		fd;
-	char	*result;
 	
 	fd = open(argv, O_RDONLY);
 	if (fd == -1)
@@ -93,5 +97,5 @@ void	map_init(t_list map, char *argv)
 		close(fd);
 		ft_error("Impossible de lire le fichier .ber");
 	}
-	map_heigth(map, fd);
+	ft_printf("%d", map_height(&map, fd));
 }
