@@ -6,7 +6,7 @@
 #    By: lribette <lribette@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/29 18:24:32 by lribette          #+#    #+#              #
-#    Updated: 2024/01/02 22:41:18 by lribette         ###   ########.fr        #
+#    Updated: 2024/01/03 21:31:27 by lribette         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,13 +36,12 @@ $(PRINTF):
 	make -C ./core/ft_printf
 
 %.o: %.c
-	$(CC) $(CFLAGS) -I/usr/include -Imlx_linux -O3 -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	$(RM) $(OBJECTS)
 	make clean -C ./mlx_linux
 	make clean -C ./core/ft_printf
-	make clean -C ./core/get_next_line
 
 fclean: clean
 	$(RM) $(NAME) $(PRINTF)

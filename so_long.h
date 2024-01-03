@@ -6,7 +6,7 @@
 /*   By: lribette <lribette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 17:44:17 by lribette          #+#    #+#             */
-/*   Updated: 2024/01/02 22:35:18 by lribette         ###   ########.fr       */
+/*   Updated: 2024/01/03 23:14:03 by lribette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <string.h>
 # include <fcntl.h>
+//# include "core/libft/libft.h"
 
 typedef struct      s_elements
 {
@@ -34,6 +35,10 @@ int	ft_printf(const char *format, ...);
 char	*get_next_line(int fd);
 void	ft_error(char *str);
 int	map_height(t_elements map, int fd);
-void	map_init(t_elements map, char *argv);
+char	*ft_strdup(char *s, char *map);
+void	map_copy(t_elements map, char *argv);
+void	sort_elements(t_elements map);
+char	**map_init(t_elements map, char *argv);
+void	free_map(t_elements map);
 
 #endif
