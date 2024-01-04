@@ -6,7 +6,7 @@
 /*   By: lribette <lribette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 17:32:52 by lribette          #+#    #+#             */
-/*   Updated: 2024/01/04 12:08:45 by lribette         ###   ########.fr       */
+/*   Updated: 2024/01/04 15:53:45 by lribette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	map_copy(t_elements *map, char *argv)
 	close(fd);
 }
 
-char	**init_map(t_elements *map, char *argv)
+char	**init_map(t_elements *map, t_player *player, char *argv)
 {
 	int		fd;
 
@@ -68,13 +68,7 @@ char	**init_map(t_elements *map, char *argv)
 	map_copy(map, argv);
 	check_number_of_elems(map);
 	is_closed(map);
-	
-	int	i = 0;
-	while (map->map[i])
-	{
-		ft_printf("%s\n", map->map[i]);
-		i++;
-	}
-	//check possible
+	where_p(map, player);
+	is_possible(map, player);
 	return (map->map);
 }
