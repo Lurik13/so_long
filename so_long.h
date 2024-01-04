@@ -6,7 +6,7 @@
 /*   By: lribette <lribette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 17:44:17 by lribette          #+#    #+#             */
-/*   Updated: 2024/01/04 15:21:01 by lribette         ###   ########.fr       */
+/*   Updated: 2024/01/04 16:07:28 by lribette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	is_closed(t_elements *map);
 void	where_p(t_elements *map, t_player *player);
 void	is_possible(t_elements *map, t_player *player);
 
+void	check_name(char *argv);
 void	map_height(t_elements *map, int fd);
 
 char	*ft_strdup(t_elements *map, char *s, char *str);

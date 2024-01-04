@@ -6,7 +6,7 @@
 /*   By: lribette <lribette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 17:32:52 by lribette          #+#    #+#             */
-/*   Updated: 2024/01/04 15:53:45 by lribette         ###   ########.fr       */
+/*   Updated: 2024/01/04 16:05:12 by lribette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ char	**init_map(t_elements *map, t_player *player, char *argv)
 {
 	int		fd;
 
+	check_name(argv);
 	fd = open(argv, O_RDONLY);
 	if (fd == -1)
 	{

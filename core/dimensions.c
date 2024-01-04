@@ -6,7 +6,7 @@
 /*   By: lribette <lribette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 11:59:24 by lribette          #+#    #+#             */
-/*   Updated: 2024/01/04 12:55:39 by lribette         ###   ########.fr       */
+/*   Updated: 2024/01/04 16:08:36 by lribette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,15 @@ static int	len(char *str)
 	while (str[i] && str[i] != '\n')
 		i++;
 	return (i);
+}
+
+void	check_name(char *argv)
+{
+	int	i;
+
+	i = len(argv) - 3;
+	if (argv[i] != 'b' && argv[i + 1] != 'e' && argv[i + 2] != 'r')
+		ft_error("Wrong file type");
 }
 
 void	map_height(t_elements *map, int fd)
