@@ -6,7 +6,7 @@
 /*   By: lribette <lribette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 12:00:14 by lribette          #+#    #+#             */
-/*   Updated: 2024/01/04 12:55:35 by lribette         ###   ########.fr       */
+/*   Updated: 2024/01/04 23:21:01 by lribette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	check_number_of_elems(t_elements *map)
 	if (map->nb_of_collectibles < 1)
 		ft_free_error(map, "It requires at least one collectible");
 	if (map->nb_of_exits != 1)
-		ft_free_error(map, "It requires an exit");
+		ft_free_error(map, "It requires one exit");
 	if (map->nb_of_starts != 1)
-		ft_free_error(map, "It requires a start position");
+		ft_free_error(map, "It requires one start position");
 }

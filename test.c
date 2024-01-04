@@ -6,7 +6,7 @@
 /*   By: lribette <lribette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 13:24:25 by lribette          #+#    #+#             */
-/*   Updated: 2024/01/04 12:07:15 by lribette         ###   ########.fr       */
+/*   Updated: 2024/01/04 23:17:35 by lribette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,19 +32,20 @@ int	main(void)
 	mlx_hook(vars.win, 2, 1L<<0, close(ON_MOUSEUP, ), &vars);
 	mlx_loop(vars.mlx);
 }*/
-
-/*int	main(void)
+/*#include <stdio.h>
+int	main(void)
 {
 	void	*mlx;
 	void	*mlx_win;
 	void	*img;
-	char	*relative_path = "./ChaperonRouge.xpm";
+	char	*relative_path = "./assets/Ground.xpm";
 	int		img_width;
 	int		img_height;
 
 	mlx = mlx_init();
 	mlx_win = mlx_new_window(mlx, 1920, 1080, "So_long");
 	img = mlx_xpm_file_to_image(mlx, relative_path, &img_width, &img_height);
+	printf("ICI : %p\n", img);
 	mlx_put_image_to_window(mlx, mlx_win, img, 0, 0);
 	mlx_loop(mlx);
 }*/

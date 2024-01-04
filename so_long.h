@@ -6,7 +6,7 @@
 /*   By: lribette <lribette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 17:44:17 by lribette          #+#    #+#             */
-/*   Updated: 2024/01/04 16:07:28 by lribette         ###   ########.fr       */
+/*   Updated: 2024/01/04 22:13:11 by lribette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <string.h>
 # include <fcntl.h>
+# include "./mlx_linux/mlx.h"
 
 typedef struct s_elements
 {
@@ -36,6 +37,12 @@ typedef struct s_player
 	int	y;
 }	t_player;
 
+typedef struct s_vars
+{
+	void	*mlx;
+	void	*win;
+}	t_vars;
+
 int		ft_printf(const char *format, ...);
 char	*get_next_line(int fd);
 
@@ -52,6 +59,9 @@ void	map_height(t_elements *map, int fd);
 char	*ft_strdup(t_elements *map, char *s, char *str);
 void	map_copy(t_elements *map, char *argv);
 char	**init_map(t_elements *map, t_player *player, char *argv);
+
+void	set_window(t_elements *map, t_player *player, t_vars *window);
+void	set_images(t_elements *map, t_player *player, t_vars *window);
 
 void	ft_error(char *str);
 void	free_map(t_elements *map);
