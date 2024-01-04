@@ -6,7 +6,7 @@
 #    By: lribette <lribette@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/29 18:24:32 by lribette          #+#    #+#              #
-#    Updated: 2024/01/03 21:31:27 by lribette         ###   ########.fr        #
+#    Updated: 2024/01/04 12:04:31 by lribette         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@ NAME = so_long
 
 SOURCES = core/get_next_line/get_next_line.c \
 			core/get_next_line/get_next_line_utils.c \
-			core/error.c core/main.c
+			core/analyse_content.c core/check_walls.c \
+			core/dimensions.c core/init_map.c core/main.c
 
 OBJECTS = $(SOURCES:.c=.o)
 MLX = ./mlx_linux/libmlx.a

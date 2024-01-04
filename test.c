@@ -6,13 +6,13 @@
 /*   By: lribette <lribette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 13:24:25 by lribette          #+#    #+#             */
-/*   Updated: 2023/12/31 17:27:16 by lribette         ###   ########.fr       */
+/*   Updated: 2024/01/04 12:07:15 by lribette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_linux/mlx.h"
 
-typedef struct	s_vars {
+/*typedef struct	s_vars {
 	void	*mlx;
 	void	*win;
 }				t_vars;
@@ -31,7 +31,7 @@ int	main(void)
 	vars.win = mlx_new_window(vars.mlx, 1920, 1080, "Hello world!");
 	mlx_hook(vars.win, 2, 1L<<0, close(ON_MOUSEUP, ), &vars);
 	mlx_loop(vars.mlx);
-}
+}*/
 
 /*int	main(void)
 {

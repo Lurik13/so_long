@@ -6,7 +6,7 @@
 /*   By: lribette <lribette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 17:33:03 by lribette          #+#    #+#             */
-/*   Updated: 2024/01/03 22:27:36 by lribette         ###   ########.fr       */
+/*   Updated: 2024/01/04 12:40:53 by lribette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,23 @@ void	ft_error(char *str)
 	exit(1);
 }
 
-void	free_map(t_elements map)
+void	free_map(t_elements *map)
 {
 	int	i;
 
 	i = 0;
-	while (i < map.height)
+	while (i < map->height)
 	{
-		free(map.map[i]);
+		free(map->map[i]);
 		i++;
 	}
-	free(map.map);
+	free(map->map);
+}
+
+void	ft_free_error(t_elements *map, char *str)
+{
+	free_map(map);
+	ft_error(str);
 }
 
 int	main(int argc, char **argv)
@@ -43,9 +49,7 @@ int	main(int argc, char **argv)
 
 	map.map = NULL;
 	if (argc != 2)
-		ft_error("Vous devez inclure un fichier .ber");
-	map_init(map, argv[1]);
-	free_map(map);
-	//check_rectangular(argv[1]);
-	//error(argv[1]);
+		ft_error("You need to include a .ber file");
+	init_map(&map, argv[1]);
+	free_map(&map);
 }
