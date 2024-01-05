@@ -6,7 +6,7 @@
 /*   By: lribette <lribette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 17:43:53 by lribette          #+#    #+#             */
-/*   Updated: 2024/01/05 19:17:52 by lribette         ###   ########.fr       */
+/*   Updated: 2024/01/05 23:25:00 by lribette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void	display_item(t_vars *window, char c, int x, int y)
 		xpm = "./assets/Ground.xpm";
 	else if (c == '1')
 		xpm = "./assets/Wall.xpm";
-	else if (c == 'c' || c == 'e') //ici 'e'
-		xpm = "./assets/IG-88.xpm";
+	else if (c == 'e')
+		xpm = "./assets/Blocked_Exit.xpm";
 	else if (c == '3')
 		xpm = "./assets/11-3K.xpm";
 	else if (c == 'B')
@@ -42,11 +42,14 @@ void	display_item(t_vars *window, char c, int x, int y)
 		xpm = "./assets/R5-D4.xpm";
 	else if (c == 'p')
 		xpm = "./assets/Jawa.xpm";
+	else //iciiiiiiiiii
+		xpm = "./assets/IG-88.xpm";
 	if (!c)
 		xpm = NULL;
 	else
 	{
 		img = mlx_xpm_file_to_image(window->mlx, xpm, &size, &size);
 		mlx_put_image_to_window(window->mlx, window->win, img, x * 32, y * 32);
+		mlx_destroy_image(window->mlx, img);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: lribette <lribette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 17:33:03 by lribette          #+#    #+#             */
-/*   Updated: 2024/01/04 21:55:12 by lribette         ###   ########.fr       */
+/*   Updated: 2024/01/05 23:12:41 by lribette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ft_error(char *str)
 	exit(1);
 }
 
-void	free_map(t_elements *map)
+int	free_map(t_elements *map)
 {
 	int	i;
 
@@ -35,6 +35,7 @@ void	free_map(t_elements *map)
 		i++;
 	}
 	free(map->map);
+	return (0);
 }
 
 void	ft_free_error(t_elements *map, char *str)
@@ -42,6 +43,12 @@ void	ft_free_error(t_elements *map, char *str)
 	free_map(map);
 	ft_error(str);
 }
+
+/*static int	close_window(t_vars *window)
+{
+	mlx_destroy_window(window->mlx, window->win);
+	return (0);
+}*/
 
 int	main(int argc, char **argv)
 {
@@ -57,5 +64,4 @@ int	main(int argc, char **argv)
 		ft_error("You need to include a .ber file");
 	init_map(&map, &player, argv[1]);
 	set_window(&map, &player, &window);
-	free_map(&map);
 }

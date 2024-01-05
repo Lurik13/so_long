@@ -6,7 +6,7 @@
 /*   By: lribette <lribette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 17:44:17 by lribette          #+#    #+#             */
-/*   Updated: 2024/01/05 18:03:45 by lribette         ###   ########.fr       */
+/*   Updated: 2024/01/05 23:24:10 by lribette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,19 @@ typedef struct s_vars
 {
 	void	*mlx;
 	void	*win;
+	void	*ground;
+	void	*wall;
+	void	*blocked_exit;
+	void	*opened_exit;
+	void	*collectible_3;
+	void	*collectible_b;
+	void	*collectible_d;
+	void	*collectible_u;
+	void	*collectible_g;
+	void	*collectible_i;
+	void	*collectible_r;
+	void	*collectible_5;
+	void	*collectible_p;
 }	t_vars;
 
 int		ft_printf(const char *format, ...);
@@ -66,7 +79,7 @@ void	set_window(t_elements *map, t_player *player, t_vars *window);
 void	set_images(t_elements *map, t_player *player, t_vars *window);
 
 void	ft_error(char *str);
-void	free_map(t_elements *map);
+int	free_map(t_elements *map);
 void	ft_free_error(t_elements *map, char *str);
 
 #endif
