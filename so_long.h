@@ -6,7 +6,7 @@
 /*   By: lribette <lribette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 17:44:17 by lribette          #+#    #+#             */
-/*   Updated: 2024/01/06 15:06:06 by lribette         ###   ########.fr       */
+/*   Updated: 2024/01/06 16:30:02 by lribette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct s_player
 {
 	int	x;
 	int	y;
+	int	count;
 }	t_player;
 
 typedef struct s_vars
@@ -90,7 +91,7 @@ int		ft_check_key(int keycode, t_game *g);
 int		ft_destroy_window(t_game *g);
 
 void	ft_error(char *str);
-int	free_map(t_game *g);
+int		free_map(t_game *g);
 void	ft_free_error(t_game *g, char *str);
 
 #endif

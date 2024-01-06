@@ -6,7 +6,7 @@
 /*   By: lribette <lribette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 17:33:03 by lribette          #+#    #+#             */
-/*   Updated: 2024/01/06 14:49:47 by lribette         ###   ########.fr       */
+/*   Updated: 2024/01/06 16:29:53 by lribette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ int	main(int argc, char **argv)
 	g.map.map = NULL;
 	g.player.x = 0;
 	g.player.y = 0;
+	g.player.count = 0;
 	//window.mlx = NULL;
 	if (argc != 2)
 		ft_error("You need to include a .ber file");

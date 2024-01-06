@@ -6,7 +6,7 @@
 /*   By: lribette <lribette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 17:43:53 by lribette          #+#    #+#             */
-/*   Updated: 2024/01/06 15:13:19 by lribette         ###   ########.fr       */
+/*   Updated: 2024/01/06 17:00:22 by lribette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,21 +60,21 @@ void	set_xpm(t_game *g)
 	g->win.c_p = mlx_xpm_file_to_image(g->win.mlx, "./assets/P.xpm", &sz, &sz);
 }
 
-static int	calcul(t_game *g, int x, int y)
+static int	calcul(t_game *g, int y, int x)
 {
 	int	hei;
 	int	len;
 
 	hei = g->map.height;
 	len = g->map.length;
-	if (y * 2 < len && x * 2 < hei)
-		return (((hei * len * 73) / (x * y)) % 8);
-	else if (len <= y * 2 && x * 2 < hei)
-		return (((hei * len * 127) / (x * (len - y))) % 8);
-	else if (y * 2 < len && hei <= x * 2)
-		return (((hei * len * 167) / ((hei - x) * y)) % 8);
-	else if (len <= y * 2 && hei <= x * 2)
-		return (((hei * len * 199) / ((hei - x) * (len - y))) % 8);
+	if (x * 2 < len && y * 2 < hei)
+		return (((hei * len * 73) / (y * x)) % 8);
+	else if (len <= x * 2 && y * 2 < hei)
+		return (((hei * len * 127) / (y * (len - x))) % 8);
+	else if (x * 2 < len && hei <= y * 2)
+		return (((hei * len * 167) / ((hei - y) * x)) % 8);
+	else if (len <= x * 2 && hei <= y * 2)
+		return (((hei * len * 199) / ((hei - y) * (len - x))) % 8);
 	return (0);
 }
 
@@ -84,20 +84,20 @@ void	which_collectible(t_game *g)
 	int		y;
 	char	*str;
 
-	x = 0;
+	y = 0;
 	str = "3BUGDIR5";
-	while (g->map.map[x])
+	while (g->map.map[y])
 	{
-		y = 0;
-		while (g->map.map[x][y])
+		x = 0;
+		while (g->map.map[y][x])
 		{
-			if (g->map.map[x][y] == 'c')
+			if (g->map.map[y][x] == 'c')
 			{
 				ft_printf("x : %d, y : %d, g->map.height : %d, g->map.length : %d, x * y : %d, g->map.height * g->map.length : %d, result : %d\n", x, y, g->map.height, g->map.length, x * y, g->map.height * g->map.length, ((g->map.height * g->map.length) / (x * y)) % 8);
-				g->map.map[x][y] = str[calcul(g, x, y)];
+				g->map.map[y][x] = str[calcul(g, y, x)];
 			}
-			y++;
+			x++;
 		}
-		x++;
+		y++;
 	}
 }

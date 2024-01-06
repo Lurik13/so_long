@@ -6,7 +6,7 @@
 /*   By: lribette <lribette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 12:01:20 by lribette          #+#    #+#             */
-/*   Updated: 2024/01/06 15:07:53 by lribette         ###   ########.fr       */
+/*   Updated: 2024/01/06 16:52:45 by lribette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,15 @@ void	where_p(t_game *g)
 
 	x = 0;
 	y = 0;
-	while (g->map.map[x][y])
+	while (g->map.map[y][x])
 	{
-		y++;
-		if (!g->map.map[x][y + 1])
+		x++;
+		if (!g->map.map[y][x + 1])
 		{
-			y = 0;
-			x++;
+			x = 0;
+			y++;
 		}
-		if (g->map.map[x][y] == 'P')
+		if (g->map.map[y][x] == 'P')
 			break ;
 	}
 	g->player.x = x;
@@ -70,24 +70,24 @@ static int	is_checked(char c)
 	return (1);
 }
 
-static void	check_elements(t_game *g, int x, int y)
+static void	check_elements(t_game *g, int y, int x)
 {
-	if (g->map.map[x][y] == '0')
-		g->map.map[x][y] = 'o';
-	else if (g->map.map[x][y] == 'C')
-		g->map.map[x][y] = 'c';
-	else if (g->map.map[x][y] == 'E')
-		g->map.map[x][y] = 'e';
-	else if (g->map.map[x][y] == 'P')
-		g->map.map[x][y] = 'p';
-	if (!is_checked(g->map.map[x][y + 1]))
-		check_elements(g, x, y + 1);
-	if (!is_checked(g->map.map[x][y - 1]))
-		check_elements(g, x, y - 1);
-	if (!is_checked(g->map.map[x + 1][y]))
-		check_elements(g, x + 1, y);
-	if (!is_checked(g->map.map[x - 1][y]))
-		check_elements(g, x - 1, y);
+	if (g->map.map[y][x] == '0')
+		g->map.map[y][x] = 'o';
+	else if (g->map.map[y][x] == 'C')
+		g->map.map[y][x] = 'c';
+	else if (g->map.map[y][x] == 'E')
+		g->map.map[y][x] = 'e';
+	else if (g->map.map[y][x] == 'P')
+		g->map.map[y][x] = 'p';
+	if (!is_checked(g->map.map[y][x + 1]))
+		check_elements(g, y, x + 1);
+	if (!is_checked(g->map.map[y][x - 1]))
+		check_elements(g, y, x - 1);
+	if (!is_checked(g->map.map[y + 1][x]))
+		check_elements(g, y + 1, x);
+	if (!is_checked(g->map.map[y - 1][x]))
+		check_elements(g, y - 1, x);
 }
 
 void	is_possible(t_game *g)
@@ -98,16 +98,16 @@ void	is_possible(t_game *g)
 	x = 0;
 	y = 0;
 	check_elements(g, g->player.x, g->player.y);
-	while (g->map.map[x])
+	while (g->map.map[y])
 	{
-		y = 0;
-		while (g->map.map[x][y])
+		x = 0;
+		while (g->map.map[y][x])
 		{
-			if (!is_checked(g->map.map[x][y]))
+			if (!is_checked(g->map.map[y][x]))
 				ft_free_error(g, "Impossible path");
-			y++;
+			x++;
 		}
-		ft_printf("%s\n", g->map.map[x]);
-		x++;
+		ft_printf("%s\n", g->map.map[y]);
+		y++;
 	}
 }

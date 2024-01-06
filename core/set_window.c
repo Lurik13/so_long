@@ -6,7 +6,7 @@
 /*   By: lribette <lribette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 21:50:49 by lribette          #+#    #+#             */
-/*   Updated: 2024/01/06 15:09:49 by lribette         ###   ########.fr       */
+/*   Updated: 2024/01/06 17:02:31 by lribette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,10 @@ int	ft_check_key(int keycode, t_game *g)
 {
 	if (keycode == 65307)
 		ft_destroy_window(g);
+	//if (keycode == 65361) Left
+	/*if (keycode == 65362) Up
+	if (keycode == 65363) Right
+	if (keycode == 65364) Down*/
 	return (0);
 }
 
