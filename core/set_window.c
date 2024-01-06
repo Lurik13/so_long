@@ -6,64 +6,75 @@
 /*   By: lribette <lribette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 21:50:49 by lribette          #+#    #+#             */
-/*   Updated: 2024/01/06 11:53:03 by lribette         ###   ########.fr       */
+/*   Updated: 2024/01/06 15:09:49 by lribette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-void	set_window(t_game *game)
+void	set_window(t_game *g)
 {
-	game->window.mlx = mlx_init();
-	ft_printf("height %d, length %d", game->map.height, game->map.length);
-	game->window.win = mlx_new_window(game->window.mlx, game->map.length * 32, game->map.height * 32, "So_long");
-	set_xpm(game);
-	set_images(game);
-	mlx_hook(game->window.win, 17, 1L << 2, ft_destroy_window, game);
-	//mlx_hook(game->window.win, 2, 1L << 0, check_key, game);
-	mlx_loop(game->window.mlx);
-	}
+	int	len;
+	int	hei;
 
-void	set_images(t_game *game)
+	len = g->map.length * 32;
+	hei = g->map.height * 32;
+	g->win.mlx = mlx_init();
+	ft_printf("height %d, length %d", g->map.height, g->map.length);
+	g->win.win = mlx_new_window(g->win.mlx, len, hei, "So_long");
+	which_collectible(g);
+	set_xpm(g);
+	set_images(g);
+	mlx_hook(g->win.win, 17, 1L << 2, ft_destroy_window, g);
+	mlx_hook(g->win.win, 2, 1L << 0, ft_check_key, g);
+	mlx_loop(g->win.mlx);
+}
+
+void	set_images(t_game *g)
 {
 	int		x;
 	int		y;
 
 	x = 0;
 	y = 0;
-	while (y < game->map.height)
+	while (y < g->map.height)
 	{
 		x = 0;
-		while (x < game->map.length)
+		while (x < g->map.length)
 		{
-			ft_printf("x : %d, y : %d, game->map.map[x][y] : %c\n", x, y, game->map.map[y][x]);
-			display_item(game, game->map.map[y][x], x, y);
+			ft_printf("x : %d, y : %d, g->map.map[x][y] : %c\n", x, y, g->map.map[y][x]);
+			display_item(g, g->map.map[y][x], x * 32, y * 32);
 			x++;
 		}
 		y++;
 	}
-	/*if ()
-		mlx_destroy_window(game->window.mlx, game->window.win);*/
 }
 
-int	ft_destroy_window(t_game *game)
+int	ft_check_key(int keycode, t_game *g)
 {
-	mlx_destroy_window(game->window.mlx, game->window.win);
-	mlx_destroy_image(game->window.mlx, game->window.ground);
-	mlx_destroy_image(game->window.mlx, game->window.wall);
-	mlx_destroy_image(game->window.mlx, game->window.blocked_exit);
-	mlx_destroy_image(game->window.mlx, game->window.opened_exit);
-	mlx_destroy_image(game->window.mlx, game->window.collec_3);
-	mlx_destroy_image(game->window.mlx, game->window.collec_b);
-	mlx_destroy_image(game->window.mlx, game->window.collec_u);
-	mlx_destroy_image(game->window.mlx, game->window.collec_g);
-	mlx_destroy_image(game->window.mlx, game->window.collec_d);
-	mlx_destroy_image(game->window.mlx, game->window.collec_i);
-	mlx_destroy_image(game->window.mlx, game->window.collec_r);
-	mlx_destroy_image(game->window.mlx, game->window.collec_5);
-	mlx_destroy_image(game->window.mlx, game->window.collec_p);
-	mlx_destroy_display(game->window.mlx);
-	free(game->window.mlx);
-	free_map(game);
+	if (keycode == 65307)
+		ft_destroy_window(g);
+	return (0);
+}
+
+int	ft_destroy_window(t_game *g)
+{
+	mlx_destroy_window(g->win.mlx, g->win.win);
+	mlx_destroy_image(g->win.mlx, g->win.g);
+	mlx_destroy_image(g->win.mlx, g->win.w);
+	mlx_destroy_image(g->win.mlx, g->win.b_e);
+	mlx_destroy_image(g->win.mlx, g->win.o_e);
+	mlx_destroy_image(g->win.mlx, g->win.c_3);
+	mlx_destroy_image(g->win.mlx, g->win.c_b);
+	mlx_destroy_image(g->win.mlx, g->win.c_u);
+	mlx_destroy_image(g->win.mlx, g->win.c_g);
+	mlx_destroy_image(g->win.mlx, g->win.c_d);
+	mlx_destroy_image(g->win.mlx, g->win.c_i);
+	mlx_destroy_image(g->win.mlx, g->win.c_r);
+	mlx_destroy_image(g->win.mlx, g->win.c_5);
+	mlx_destroy_image(g->win.mlx, g->win.c_p);
+	mlx_destroy_display(g->win.mlx);
+	free(g->win.mlx);
+	free_map(g);
 	exit(0);
 }
