@@ -6,21 +6,21 @@
 /*   By: lribette <lribette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 17:32:52 by lribette          #+#    #+#             */
-/*   Updated: 2024/01/05 22:04:03 by lribette         ###   ########.fr       */
+/*   Updated: 2024/01/06 11:29:24 by lribette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-char	*ft_strdup(t_elements *map, char *s, char *str)
+char	*ft_strdup(t_game *game, char *s, char *str)
 {
 	int		i;
 
 	i = 0;
-	str = malloc((map->length + 1) * sizeof(char));
+	str = malloc((game->map.length + 1) * sizeof(char));
 	if (!str)
 		ft_error("Malloc failed");
-	while (i < map->length)
+	while (i < game->map.length)
 	{
 		str[i] = s[i];
 		i++;
@@ -30,7 +30,7 @@ char	*ft_strdup(t_elements *map, char *s, char *str)
 	return (str);
 }
 
-void	map_copy(t_elements *map, char *argv)
+void	map_copy(t_game *game, char *argv)
 {
 	int		fd;
 	int		i;
@@ -41,20 +41,20 @@ void	map_copy(t_elements *map, char *argv)
 		close(fd);
 		ft_error("Impossible to read the .ber file");
 	}
-	map->map = malloc((map->height + 1) * sizeof(char *));
-	if (!map->map)
+	game->map.map = malloc((game->map.height + 1) * sizeof(char *));
+	if (!game->map.map)
 		ft_error("Malloc failed");
 	i = 0;
-	while (i < map->height)
+	while (i < game->map.height)
 	{
-		map->map[i] = ft_strdup(map, get_next_line(fd), map->map[i]);
+		game->map.map[i] = ft_strdup(game, get_next_line(fd), game->map.map[i]);
 		i++;
 	}
-	map->map[map->height] = 0;
+	game->map.map[game->map.height] = 0;
 	close(fd);
 }
 
-char	**init_map(t_elements *map, t_player *player, char *argv)
+char	**init_map(t_game *game, char *argv)
 {
 	int		fd;
 
@@ -65,11 +65,11 @@ char	**init_map(t_elements *map, t_player *player, char *argv)
 		close(fd);
 		ft_error("Impossible to read the .ber file");
 	}
-	map_height(map, fd);
-	map_copy(map, argv);
-	check_number_of_elems(map);
-	is_closed(map);
-	where_p(map, player);
-	is_possible(map, player);
-	return (map->map);
+	map_height(game, fd);
+	map_copy(game, argv);
+	check_number_of_elems(game);
+	is_closed(game);
+	where_p(game);
+	is_possible(game);
+	return (game->map.map);
 }

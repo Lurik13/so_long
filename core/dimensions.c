@@ -6,7 +6,7 @@
 /*   By: lribette <lribette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 11:59:24 by lribette          #+#    #+#             */
-/*   Updated: 2024/01/04 16:08:36 by lribette         ###   ########.fr       */
+/*   Updated: 2024/01/06 11:10:36 by lribette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,23 +31,23 @@ void	check_name(char *argv)
 		ft_error("Wrong file type");
 }
 
-void	map_height(t_elements *map, int fd)
+void	map_height(t_game *game, int fd)
 {
 	char	*result;
 
 	result = get_next_line(fd);
-	map->height = 0;
-	map->length = len(result);
+	game->map.height = 0;
+	game->map.length = len(result);
 	while (result)
 	{
 		free(result);
 		result = get_next_line(fd);
-		if (result && map->length != len(result))
+		if (result && game->map.length != len(result))
 		{
 			free(result);
 			ft_error("Not rectangular");
 		}
-		map->height++;
+		game->map.height++;
 	}
 	close(fd);
 }

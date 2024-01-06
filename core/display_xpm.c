@@ -6,50 +6,58 @@
 /*   By: lribette <lribette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 17:43:53 by lribette          #+#    #+#             */
-/*   Updated: 2024/01/05 23:25:00 by lribette         ###   ########.fr       */
+/*   Updated: 2024/01/06 11:11:31 by lribette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-void	display_item(t_vars *window, char c, int x, int y)
+void	display_item(t_game *game, char c, int x, int y)
 {
-	int		size;
-	void	*img;
-	char	*xpm;
-
 	if (c == 'o')
-		xpm = "./assets/Ground.xpm";
+		mlx_put_image_to_window(game->window.mlx, game->window.win, game->window.ground, x * 32, y * 32);
 	else if (c == '1')
-		xpm = "./assets/Wall.xpm";
+		mlx_put_image_to_window(game->window.mlx, game->window.win, game->window.wall, x * 32, y * 32);
 	else if (c == 'e')
-		xpm = "./assets/Blocked_Exit.xpm";
+		mlx_put_image_to_window(game->window.mlx, game->window.win, game->window.blocked_exit, x * 32, y * 32);
 	else if (c == '3')
-		xpm = "./assets/11-3K.xpm";
+		mlx_put_image_to_window(game->window.mlx, game->window.win, game->window.collec_3, x * 32, y * 32);
 	else if (c == 'B')
-		xpm = "./assets/B1.xpm";
+		mlx_put_image_to_window(game->window.mlx, game->window.win, game->window.collec_b, x * 32, y * 32);
 	else if (c == 'D')
-		xpm = "./assets/Droideka.xpm";
+		mlx_put_image_to_window(game->window.mlx, game->window.win, game->window.collec_d, x * 32, y * 32);
 	else if (c == 'U')
-		xpm = "./assets/DUM.xpm";
+		mlx_put_image_to_window(game->window.mlx, game->window.win, game->window.collec_u, x * 32, y * 32);
 	else if (c == 'G')
-		xpm = "./assets/GNK.xpm";
+		mlx_put_image_to_window(game->window.mlx, game->window.win, game->window.collec_g, x * 32, y * 32);
 	else if (c == 'I')
-		xpm = "./assets/IG-88.xpm";
+		mlx_put_image_to_window(game->window.mlx, game->window.win, game->window.collec_i, x * 32, y * 32);
 	else if (c == 'R')
-		xpm = "./assets/R2-D2.xpm";
+		mlx_put_image_to_window(game->window.mlx, game->window.win, game->window.collec_r, x * 32, y * 32);
 	else if (c == '5')
-		xpm = "./assets/R5-D4.xpm";
+		mlx_put_image_to_window(game->window.mlx, game->window.win, game->window.collec_5, x * 32, y * 32);
 	else if (c == 'p')
-		xpm = "./assets/Jawa.xpm";
+		mlx_put_image_to_window(game->window.mlx, game->window.win, game->window.collec_p, x * 32, y * 32);
 	else //iciiiiiiiiii
-		xpm = "./assets/IG-88.xpm";
-	if (!c)
-		xpm = NULL;
-	else
-	{
-		img = mlx_xpm_file_to_image(window->mlx, xpm, &size, &size);
-		mlx_put_image_to_window(window->mlx, window->win, img, x * 32, y * 32);
-		mlx_destroy_image(window->mlx, img);
-	}
+		mlx_put_image_to_window(game->window.mlx, game->window.win, game->window.opened_exit, x * 32, y * 32);
+}
+
+void	set_xpm(t_game *game)
+{
+	int	size;
+	
+	size = 32;
+	game->window.ground = mlx_xpm_file_to_image(game->window.mlx, "./assets/Ground.xpm", &size, &size);
+	game->window.wall = mlx_xpm_file_to_image(game->window.mlx, "./assets/Wall.xpm", &size, &size);
+	game->window.blocked_exit = mlx_xpm_file_to_image(game->window.mlx, "./assets/Blocked_Exit.xpm", &size, &size);
+	game->window.opened_exit = mlx_xpm_file_to_image(game->window.mlx, "./assets/Opened_Exit.xpm", &size, &size);
+	game->window.collec_3 = mlx_xpm_file_to_image(game->window.mlx, "./assets/11-3K.xpm", &size, &size);
+	game->window.collec_b = mlx_xpm_file_to_image(game->window.mlx, "./assets/B1.xpm", &size, &size);
+	game->window.collec_u = mlx_xpm_file_to_image(game->window.mlx, "./assets/DUM.xpm", &size, &size);
+	game->window.collec_g = mlx_xpm_file_to_image(game->window.mlx, "./assets/GNK.xpm", &size, &size);
+	game->window.collec_d = mlx_xpm_file_to_image(game->window.mlx, "./assets/Droideka.xpm", &size, &size);
+	game->window.collec_i = mlx_xpm_file_to_image(game->window.mlx, "./assets/IG-88.xpm", &size, &size);
+	game->window.collec_r = mlx_xpm_file_to_image(game->window.mlx, "./assets/R2-D2.xpm", &size, &size);
+	game->window.collec_5 = mlx_xpm_file_to_image(game->window.mlx, "./assets/R5-D4.xpm", &size, &size);
+	game->window.collec_p = mlx_xpm_file_to_image(game->window.mlx, "./assets/Jawa.xpm", &size, &size);
 }

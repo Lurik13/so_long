@@ -6,7 +6,7 @@
 /*   By: lribette <lribette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 17:44:17 by lribette          #+#    #+#             */
-/*   Updated: 2024/01/05 23:24:10 by lribette         ###   ########.fr       */
+/*   Updated: 2024/01/06 11:23:07 by lribette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,41 +45,50 @@ typedef struct s_vars
 	void	*wall;
 	void	*blocked_exit;
 	void	*opened_exit;
-	void	*collectible_3;
-	void	*collectible_b;
-	void	*collectible_d;
-	void	*collectible_u;
-	void	*collectible_g;
-	void	*collectible_i;
-	void	*collectible_r;
-	void	*collectible_5;
-	void	*collectible_p;
+	void	*collec_3;
+	void	*collec_b;
+	void	*collec_u;
+	void	*collec_g;
+	void	*collec_d;
+	void	*collec_i;
+	void	*collec_r;
+	void	*collec_5;
+	void	*collec_p;
 }	t_vars;
+
+typedef struct s_game
+{
+	t_elements	map;
+	t_player	player;
+	t_vars		window;
+}	t_game;
 
 int		ft_printf(const char *format, ...);
 char	*get_next_line(int fd);
 
-void	sort_elements(t_elements *map, char *str);
-void	check_number_of_elems(t_elements *map);
+void	sort_elements(t_game *game, char *str);
+void	check_number_of_elems(t_game *game);
 
-void	is_closed(t_elements *map);
-void	where_p(t_elements *map, t_player *player);
-void	is_possible(t_elements *map, t_player *player);
+void	is_closed(t_game *game);
+void	where_p(t_game *game);
+void	is_possible(t_game *game);
 
 void	check_name(char *argv);
-void	map_height(t_elements *map, int fd);
+void	map_height(t_game *game, int fd);
 
-void	display_item(t_vars *window, char c, int x, int y);
+void	display_item(t_game *game, char c, int x, int y);
+void	set_xpm(t_game *game);
 
-char	*ft_strdup(t_elements *map, char *s, char *str);
-void	map_copy(t_elements *map, char *argv);
-char	**init_map(t_elements *map, t_player *player, char *argv);
+char	*ft_strdup(t_game *game, char *s, char *str);
+void	map_copy(t_game *game, char *argv);
+char	**init_map(t_game *game, char *argv);
 
-void	set_window(t_elements *map, t_player *player, t_vars *window);
-void	set_images(t_elements *map, t_player *player, t_vars *window);
+void	set_window(t_game *game);
+void	set_images(t_game *game);
+int		ft_destroy_window(t_game *game);
 
 void	ft_error(char *str);
-int	free_map(t_elements *map);
-void	ft_free_error(t_elements *map, char *str);
+int	free_map(t_game *game);
+void	ft_free_error(t_game *game, char *str);
 
 #endif
