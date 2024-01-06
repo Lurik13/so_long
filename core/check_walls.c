@@ -6,7 +6,7 @@
 /*   By: lribette <lribette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 12:01:20 by lribette          #+#    #+#             */
-/*   Updated: 2024/01/06 19:54:25 by lribette         ###   ########.fr       */
+/*   Updated: 2024/01/06 21:28:46 by lribette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,6 @@ void	is_possible(t_game *g)
 				ft_free_error(g, "Impossible path");
 			x++;
 		}
-		ft_printf("%s\n", g->map.map[y]);
 		y++;
 	}
 	display_exit(g);

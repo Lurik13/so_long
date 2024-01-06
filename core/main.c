@@ -6,7 +6,7 @@
 /*   By: lribette <lribette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 17:33:03 by lribette          #+#    #+#             */
-/*   Updated: 2024/01/06 16:29:53 by lribette         ###   ########.fr       */
+/*   Updated: 2024/01/06 22:03:06 by lribette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,6 @@ void	ft_free_error(t_game *g, char *str)
 	ft_error(str);
 }
 
-/*static int	close_window(t_vars *window)
-{
-	mlx_destroy_window(g->win.mlx, g->win.win);
-	return (0);
-}*/
-
 int	main(int argc, char **argv)
 {
 	t_game		g;
@@ -58,7 +52,6 @@ int	main(int argc, char **argv)
 	g.player.x = 0;
 	g.player.y = 0;
 	g.player.count = 0;
-	//window.mlx = NULL;
 	if (argc != 2)
 		ft_error("You need to include a .ber file");
 	init_map(&g, argv[1]);
