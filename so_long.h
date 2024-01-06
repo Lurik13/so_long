@@ -6,7 +6,7 @@
 /*   By: lribette <lribette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 17:44:17 by lribette          #+#    #+#             */
-/*   Updated: 2024/01/06 16:30:02 by lribette         ###   ########.fr       */
+/*   Updated: 2024/01/06 19:38:08 by lribette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct s_elements
 	int		nb_of_walls;
 	int		nb_of_collectibles;
 	int		nb_of_exits;
+	int		is_exit_opened;
 	int		nb_of_starts;
 	char	**map;
 }	t_elements;
@@ -77,6 +78,11 @@ void	is_possible(t_game *g);
 void	check_name(char *argv);
 void	map_height(t_game *g, int fd);
 
+void	to_left(t_game *g);
+void	to_up(t_game *g);
+void	to_right(t_game *g);
+void	to_down(t_game *g);
+
 void	display_item(t_game *g, char c, int x, int y);
 void	set_xpm(t_game *g);
 void	which_collectible(t_game *g);
@@ -85,10 +91,14 @@ char	*ft_strdup(t_game *g, char *s, char *str);
 void	map_copy(t_game *g, char *argv);
 char	**init_map(t_game *g, char *argv);
 
+void	display_exit(t_game *g);
+void	open_exit(t_game *g);
+
 void	set_window(t_game *g);
 void	set_images(t_game *g);
 int		ft_check_key(int keycode, t_game *g);
 int		ft_destroy_window(t_game *g);
+void	the_end(t_game *g, int y, int x);
 
 void	ft_error(char *str);
 int		free_map(t_game *g);

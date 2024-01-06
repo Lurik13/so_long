@@ -6,7 +6,7 @@
 /*   By: lribette <lribette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 17:32:52 by lribette          #+#    #+#             */
-/*   Updated: 2024/01/06 14:48:58 by lribette         ###   ########.fr       */
+/*   Updated: 2024/01/06 18:20:47 by lribette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,6 @@ char	**init_map(t_game *g, char *argv)
 	is_closed(g);
 	where_p(g);
 	is_possible(g);
+	g->map.is_exit_opened = 0;
 	return (g->map.map);
 }

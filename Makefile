@@ -6,7 +6,7 @@
 #    By: lribette <lribette@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/29 18:24:32 by lribette          #+#    #+#              #
-#    Updated: 2024/01/06 16:26:53 by lribette         ###   ########.fr        #
+#    Updated: 2024/01/06 19:34:40 by lribette         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,8 @@ SOURCES = core/get_next_line/get_next_line.c \
 			core/get_next_line/get_next_line_utils.c \
 			core/analyse_content.c core/check_walls.c \
 			core/dimensions.c core/init_map.c core/set_window.c \
-			core/display_xpm.c core/directions.c core/main.c
+			core/display_xpm.c core/directions.c core/other_functions.c \
+			core/main.c
 			
 
 OBJECTS = $(SOURCES:.c=.o)

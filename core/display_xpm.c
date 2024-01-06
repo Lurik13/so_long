@@ -6,7 +6,7 @@
 /*   By: lribette <lribette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 17:43:53 by lribette          #+#    #+#             */
-/*   Updated: 2024/01/06 17:00:22 by lribette         ###   ########.fr       */
+/*   Updated: 2024/01/06 19:36:55 by lribette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,10 +92,7 @@ void	which_collectible(t_game *g)
 		while (g->map.map[y][x])
 		{
 			if (g->map.map[y][x] == 'c')
-			{
-				ft_printf("x : %d, y : %d, g->map.height : %d, g->map.length : %d, x * y : %d, g->map.height * g->map.length : %d, result : %d\n", x, y, g->map.height, g->map.length, x * y, g->map.height * g->map.length, ((g->map.height * g->map.length) / (x * y)) % 8);
 				g->map.map[y][x] = str[calcul(g, y, x)];
-			}
 			x++;
 		}
 		y++;

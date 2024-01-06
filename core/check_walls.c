@@ -6,7 +6,7 @@
 /*   By: lribette <lribette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 12:01:20 by lribette          #+#    #+#             */
-/*   Updated: 2024/01/06 16:52:45 by lribette         ###   ########.fr       */
+/*   Updated: 2024/01/06 19:54:25 by lribette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	where_p(t_game *g)
 
 static int	is_checked(char c)
 {
-	if (c == '0' || c == 'C' || c == 'E' || c == 'P')
+	if (c == '0' || c == 'C' || c == 'P')
 		return (0);
 	return (1);
 }
@@ -97,17 +97,18 @@ void	is_possible(t_game *g)
 
 	x = 0;
 	y = 0;
-	check_elements(g, g->player.x, g->player.y);
+	check_elements(g, g->player.y, g->player.x);
 	while (g->map.map[y])
 	{
 		x = 0;
 		while (g->map.map[y][x])
 		{
-			if (!is_checked(g->map.map[y][x]))
+			if (!is_checked(g->map.map[y][x]) && g->map.map[y][x] != 'E')
 				ft_free_error(g, "Impossible path");
 			x++;
 		}
 		ft_printf("%s\n", g->map.map[y]);
 		y++;
 	}
+	display_exit(g);
 }

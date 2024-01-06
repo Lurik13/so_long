@@ -6,7 +6,7 @@
 /*   By: lribette <lribette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 21:50:49 by lribette          #+#    #+#             */
-/*   Updated: 2024/01/06 17:02:31 by lribette         ###   ########.fr       */
+/*   Updated: 2024/01/06 19:45:46 by lribette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ void	set_window(t_game *g)
 	len = g->map.length * 32;
 	hei = g->map.height * 32;
 	g->win.mlx = mlx_init();
-	ft_printf("height %d, length %d", g->map.height, g->map.length);
 	g->win.win = mlx_new_window(g->win.mlx, len, hei, "So_long");
 	which_collectible(g);
 	set_xpm(g);
 	set_images(g);
+	ft_printf("0\n");
 	mlx_hook(g->win.win, 17, 1L << 2, ft_destroy_window, g);
 	mlx_hook(g->win.win, 2, 1L << 0, ft_check_key, g);
 	mlx_loop(g->win.mlx);
@@ -42,7 +42,6 @@ void	set_images(t_game *g)
 		x = 0;
 		while (x < g->map.length)
 		{
-			ft_printf("x : %d, y : %d, g->map.map[x][y] : %c\n", x, y, g->map.map[y][x]);
 			display_item(g, g->map.map[y][x], x * 32, y * 32);
 			x++;
 		}
@@ -54,10 +53,20 @@ int	ft_check_key(int keycode, t_game *g)
 {
 	if (keycode == 65307)
 		ft_destroy_window(g);
-	//if (keycode == 65361) Left
-	/*if (keycode == 65362) Up
-	if (keycode == 65363) Right
-	if (keycode == 65364) Down*/
+	else if (keycode == 97)
+		to_left(g);
+	else if (keycode == 119)
+		to_up(g);
+	else if (keycode == 100)
+		to_right(g);
+	else if (keycode == 115)
+		to_down(g);
+	else
+		return (0);
+	if (!g->map.nb_of_collectibles && !g->map.is_exit_opened)
+		open_exit(g);
+	g->player.count++;
+	ft_printf("%d\n", g->player.count);
 	return (0);
 }
 
@@ -81,4 +90,11 @@ int	ft_destroy_window(t_game *g)
 	free(g->win.mlx);
 	free_map(g);
 	exit(0);
+}
+
+void	the_end(t_game *g, int y, int x)
+{
+	display_item(g, 'o', x, y);
+	ft_printf("Your score is %d\n", g->player.count);
+	ft_destroy_window(g);
 }
