@@ -14,11 +14,9 @@
 
 int	ft_putnbr(int n)
 {
-	int		i;
 	int		len;
 	long	nb;
 
-	i = 0;
 	len = 0;
 	nb = n;
 	if (nb < 0)
